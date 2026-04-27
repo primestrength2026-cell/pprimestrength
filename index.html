@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>PrimeStrength Ultra</title>
+
+<!-- Font احترافي -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+
+/* ===== GLOBAL ===== */
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Montserrat', sans-serif;
+}
+
+body{
+background:#000;
+color:#fff;
+}
+
+/* ===== HEADER ===== */
+header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 30px;
+border-bottom:1px solid gold;
+position:sticky;
+top:0;
+background:#000;
+z-index:1000;
+}
+
+.logo{
+font-size:26px;
+font-weight:700;
+color:gold;
+letter-spacing:2px;
+}
+
+#search{
+padding:10px;
+border:none;
+border-radius:6px;
+width:220px;
+outline:none;
+}
+
+/* ===== HERO ===== */
+.hero{
+text-align:center;
+padding:80px 20px;
+}
+
+.hero h1{
+font-size:48px;
+color:gold;
+margin-bottom:10px;
+}
+
+.hero p{
+font-size:16px;
+opacity:0.8;
+}
+
+/* ===== NAV MENU ===== */
+nav{
+display:flex;
+justify-content:center;
+flex-wrap:wrap;
+gap:10px;
+padding:20px;
+}
+
+nav button{
+background:#111;
+border:1px solid gold;
+color:#fff;
+padding:10px 15px;
+cursor:pointer;
+transition:0.3s;
+}
+
+nav button:hover{
+background:gold;
+color:#000;
+transform:scale(1.05);
+}
+
+/* ===== PRODUCTS ===== */
+.products{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:20px;
+padding:30px;
+}
+
+.card{
+background:#111;
+padding:20px;
+border:1px solid #222;
+border-radius:10px;
+transition:0.3s;
+}
+
+.card:hover{
+transform:translateY(-5px);
+border-color:gold;
+}
+
+.card h3{
+font-size:18px;
+color:gold;
+margin-bottom:8px;
+}
+
+.card p{
+font-size:14px;
+opacity:0.8;
+margin-bottom:10px;
+}
+
+.card button{
+background:gold;
+border:none;
+padding:8px 12px;
+cursor:pointer;
+font-weight:bold;
+}
+
+/* ===== INFO SECTION ===== */
+.info{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:15px;
+padding:30px;
+text-align:center;
+}
+
+.box{
+background:#111;
+padding:20px;
+border:1px solid #222;
+}
+
+.box h4{
+color:gold;
+margin-bottom:5px;
+}
+
+/* ===== FOOTER ===== */
+footer{
+text-align:center;
+padding:40px;
+border-top:1px solid gold;
+margin-top:30px;
+}
+
+a{
+color:gold;
+text-decoration:none;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+<div class="logo">PRIMESTRENGTH</div>
+<input id="search" placeholder="Search..." onkeyup="search()">
+</header>
+
+<section class="hero">
+<h1>Train Like A Champion</h1>
+<p>Premium Sports Equipment Store</p>
+</section>
+
+<nav id="menu"></nav>
+
+<section class="products" id="products"></section>
+
+<section class="info">
+
+<div class="box"><h4>Fast Delivery</h4><p>Reliable orders</p></div>
+<div class="box"><h4>Premium Quality</h4><p>Pro equipment</p></div>
+<div class="box"><h4>Best Prices</h4><p>Affordable gear</p></div>
+<div class="box"><h4>Support</h4><p>24/7 WhatsApp</p></div>
+
+</section>
+
+<footer>
+
+<h3>PrimeStrength Store</h3>
+<p>Contact: <a href="https://wa.me/9617606292">WhatsApp</a></p>
+<p>76062928</p>
+
+</footer>
+
+<script>
+
+/* ===== 15+ CATEGORIES ===== */
+
+const categories=[
+"MMA","Boxing","Swimming","Massage","Hiking",
+"Running","Fitness","Yoga","Cycling","Climbing",
+"Football","Basketball","Tennis","Crossfit","Recovery"
+];
+
+const menu=document.getElementById("menu");
+const products=document.getElementById("products");
+
+/* MENU BUTTONS */
+
+categories.forEach(c=>{
+let b=document.createElement("button");
+b.innerText=c;
+b.onclick=()=>load(c);
+menu.appendChild(b);
+});
+
+/* SAMPLE PRODUCTS (بدون صور حالياً) */
+
+function load(cat){
+
+products.innerHTML="";
+
+for(let i=1;i<=6;i++){
+
+products.innerHTML+=`
+<div class="card">
+<h3>${cat} Gear ${i}</h3>
+<p>Professional quality equipment</p>
+<p>Price: ${(10+i)*3}$</p>
+<button onclick="order('${cat} Gear ${i}')">
+Order
+</button>
+</div>
+`;
+
+}
+
+}
+
+/* ORDER */
+
+function order(item){
+
+window.open(
+"https://wa.me/9617606292?text=I want "+item
+);
+
+}
+
+/* SEARCH */
+
+function search(){
+
+let v=document.getElementById("search").value.toLowerCase();
+
+document.querySelectorAll(".card").forEach(c=>{
+c.style.display=
+c.innerText.toLowerCase().includes(v)
+?"block":"none";
+});
+
+}
+
+/* default load */
+
+load("Boxing");
+
+</script>
+
+</body>
+</html>
